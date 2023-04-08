@@ -16,7 +16,6 @@ string[] MassRead(int row)
 
     for (int i = 0; i < row; i++)
         arr[i] = Console.ReadLine()!;
-
     return arr;
 }
 
@@ -33,27 +32,27 @@ string[] MassNew(int row, string[] arr)
 {
     string[] ArrNew = new string[row];
     int j = 0;
+
     for (int i = 0; i < arr.Length; i++)
-    {
         if (arr[i].Length <= 3)
         {
             ArrNew[j] = arr[i];
             j++;
         }
-    }
     return ArrNew;
 }
 
+Console.WriteLine("Введите размер массива: ");
 int num_size = int.Parse(Console.ReadLine()!);
 
+if (num_size > 0)
+    Console.WriteLine($"Введите {num_size} Строк:");
 string[] mass = MassRead(num_size);
 Print(mass);
 
 int new_mass_size = MassSize(mass);
 if (new_mass_size == 0)
-{
     Console.Write("Для нового массива, нету строк <= 3   ");
-}
 else
 {
     string[] newmass = MassNew(new_mass_size, mass);
