@@ -5,13 +5,8 @@
 
 void Print(string[] arr)
 {
-    int row = arr.GetLength(0);
-
-    for (int i = 0; i < row; i++)
-    {
+    for (int i = 0; i < arr.Length; i++)
         Console.Write($"{arr[i]}  ");
-        Console.Write($"-{arr[i].Length}-  ");
-    }
     Console.WriteLine();
 }
 
@@ -20,12 +15,47 @@ string[] MassRead(int row)
     string[] arr = new string[row];
 
     for (int i = 0; i < row; i++)
-            arr[i] = Console.ReadLine()!;
+        arr[i] = Console.ReadLine()!;
 
     return arr;
+}
+
+int MassSize(string[] arr)
+{
+    int MassLenght = 0;
+
+    for (int i = 0; i < arr.Length; i++)
+        if (arr[i].Length <= 3) MassLenght++;
+    return MassLenght;
+}
+
+string[] MassNew(int row, string[] arr)
+{
+    string[] ArrNew = new string[row];
+    int j = 0;
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if (arr[i].Length <= 3)
+        {
+            ArrNew[j] = arr[i];
+            j++;
+        }
+    }
+    return ArrNew;
 }
 
 int num_size = int.Parse(Console.ReadLine()!);
 
 string[] mass = MassRead(num_size);
 Print(mass);
+
+int new_mass_size = MassSize(mass);
+if (new_mass_size == 0)
+{
+    Console.Write("Для нового массива, нету строк <= 3   ");
+}
+else
+{
+    string[] newmass = MassNew(new_mass_size, mass);
+    Print(newmass);
+}
